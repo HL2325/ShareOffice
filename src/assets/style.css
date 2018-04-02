@@ -1,0 +1,40 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Microsoft YaHei';
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+  color: #000;
+}
+html{
+  height: 100%;
+  width: 100%;
+}
+body{
+  height: 100%;
+  width: 100%;
+}
+input{
+  border:none;
+  outline: none;
+}
+button{
+  border:none;
+  outline: none;
+}
+.clearfix:after{
+  content:"";
+  height:0;
+  line-height:0;
+  visibility:hidden;
+  display:block;
+  clear:both
+}
+.clearfix{
+  zoom: 1;
+}
