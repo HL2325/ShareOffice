@@ -81,7 +81,6 @@ export default {
     getInfo () {
       UserInfo().then(data => {
         this.get_Info = data.result
-        console.log(this.get_Info)
       })
       .catch(() => {})
     },

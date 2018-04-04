@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import { login } from '@/api' 
+  import { login } from '@/api'
   import * as types from '@/store/types'
   export default {
     data () {
@@ -27,14 +27,21 @@
     },
     methods: {
       submitForm (form) {
-        login(this.form).then(data => {
-            if (data.resultcode === 200) {
-              console.log(data.result)
-              let key = JSON.stringify(data.result)
-              this.$store.commit(types.LOGIN, key)
-              this.$router.push('/home')
-            }
+        const toastLogin = this.$toast.loading({
+          mask: true,
+          message: '登录中...',
+          duration:0
         })
+        login(this.form).then(data => {
+          if (data.resultcode === 200) {
+            let key = JSON.stringify(data.result)
+            this.$store.commit(types.LOGIN, key)
+            this.$router.push('/home')
+          }
+          this.$toast.loading({mask:false})
+          toastLogin.clear()
+        })
+          .catch (() => {})
       }
     }
   }

@@ -14,6 +14,16 @@
           {{l.name}}
         </router-link>
       </ul>
+      <div class="SlideBarBottom">
+        <router-link tag="span" to="/changePassword">
+          <i class="iconfont icon-yuechi"></i>
+          修改密码
+        </router-link>
+        <span>
+          <i class="iconfont icon-guanbi"></i>
+          退出登录
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -84,9 +94,6 @@
           line-height: 1rem;
           border-right: 0.1rem solid rgba(0,0,0,0);
           i{
-            display: inline-block;
-            width: 0.44rem;
-            height:0.44rem;
             float: left;
             font-size: 0.5rem;
             color: #2c75ab;
@@ -94,6 +101,26 @@
             margin-left: 0.52rem;
           }
         }
+      }
+    }
+    .SlideBarBottom{
+      font-size: 0.3rem;
+      position: absolute;
+      bottom: 0.2rem;
+      padding:0 0.4rem;
+      width: 100%;
+      span{
+        float: left;
+        i{
+          font-size: 0.35rem;
+          float: left;
+          color: #2c75ab;
+          margin-right: 0.1rem;
+          margin-top: 2px;
+        }
+      }
+      span:nth-last-child(1) {
+        float: right;
       }
     }
   }

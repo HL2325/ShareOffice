@@ -53,4 +53,8 @@ export function UserInfo () {
   return Ax.post(`Home/UserInfo`)
 }
 
+// 侧边栏 - 修改密码
+export function UpdarePwd (data) {
+  return Ax.post(`User/UpdatePwd`, data)
+}
 export default Ax

@@ -93,6 +93,16 @@ export default new Router({
       }
     },
     {
+      path: '/changePassword',
+      name: '修改密码',
+      meta: {
+        requireAuth: true
+      },
+      component: resolve => {
+        require(['../pages/ChangePassword'],resolve)
+      }
+    },
+    {
       path: '*',
       redirect: '/'
     }
