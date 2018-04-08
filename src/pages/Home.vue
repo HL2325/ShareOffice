@@ -70,6 +70,8 @@
 <script>
 import { UserInfo } from '@/api'
 import SlideBar from '../components/SlideBar.vue'
+import store from '../store/store'
+import * as types from '../store/types'
 export default {
   data () {
     return {
@@ -92,7 +94,33 @@ export default {
     }
   },
   mounted () {
+    var UserTk = store.state.login.token.token
+    var UserId = store.state.login.token.uid
+    var times = new Date()
+    var requestTime = times.getFullYear() + '-' + (times.getMonth() + 1) + '-'
+      + times.getDate() + '__' + times.getHours() + ':' + times.getMinutes() + ':' + times.getSeconds()
     this.getInfo()
+
+    var ws = new WebSocket('ws://192.168.19.21:15674/ws')
+    new window.Stomp.Over(ws)
+    var client = new window.Stomp.Over(ws)
+//    console.log(client)
+    var on_connect = function (x) {
+//      公有订阅
+      client.subscribe("/exchange/topic.sts.ccu_00293.general.dev/sts.ccu_00293.DEV.#",function(d){
+//        console.log(d)
+      })
+//      订阅用户设备
+      client.subscribe('Home_st' + UserTk + '_userDevice_home', function(data){
+//        alert(1)
+        console.log( '--____-------____' + data.body)
+      },{'auto-delete':true,'durable':true})
+      var obj1 = {'user_id':UserId, 'user_token':UserTk, 'request_cmd':'GetUserDevices', 'enterprise_id':'', 'request_time':requestTime, 'reply_queue_name': 'Home_st' + UserTk + '_userDevice_home'}
+      client.send('StS.ClientRequest',{},JSON.stringify(obj1))
+    }
+    var on_error = function () {}
+
+    client.connect('sts_w','sts_w123456',on_connect, on_error,'Smart_V4')
   },
   components: { UserInfo, SlideBar }
 }
@@ -132,7 +160,7 @@ export default {
       float: left;
       width: 2rem;
       height:2rem;
-      margin: 0.4rem 0.5rem 0.35rem 0.35rem;
+      margin: 0.4rem 0.3rem 0.3rem 0.35rem;
       background: url("../assets/image/home/headBorder.gif") no-repeat;
       background-size: 100% 100%;
       img{

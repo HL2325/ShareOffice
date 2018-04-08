@@ -19,7 +19,7 @@
       return {
         form: {
           type: 1,
-          account: '13123957072',
+        account: '17339575591',
           pwd: '123456',
           code: ''
         }

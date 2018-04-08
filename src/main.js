@@ -8,6 +8,7 @@ import store from './store/store'
 import '@/assets/font/iconfont.css'
 import '@/assets/style.css'
 import 'vant/lib/vant-css/index.css'
+import '@/assets/js/stomp.js'
 
 Vue.config.productionTip = false
 Vue.use(Vant)
