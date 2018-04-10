@@ -27,7 +27,7 @@
     },
     methods: {
       submitForm (form) {
-        const toastLogin = this.$toast.loading({
+        this.$toast.loading({
           mask: true,
           message: '登录中...',
           duration:0
@@ -37,9 +37,9 @@
             let key = JSON.stringify(data.result)
             this.$store.commit(types.LOGIN, key)
             this.$router.push('/home')
+          } else if (data.resultcode === 503) {
+            this.$toast(data.errordes)
           }
-          this.$toast.loading({mask:false})
-          toastLogin.clear()
         })
           .catch (() => {})
       }
@@ -84,6 +84,14 @@
       margin: 0.7rem auto 0;
       border-radius: 0.16rem;
       font-size: 0.3rem;
+    }
+    .passTs{
+      font-size: 0.3rem;
+      height: 1rem;
+      line-height: 1rem;
+      background: rgba(0,0,0,.6);
+      text-align: center;
+      color: #fff;
     }
   }
 </style>

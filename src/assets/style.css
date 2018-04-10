@@ -23,6 +23,9 @@ input{
   border:none;
   outline: none;
 }
+i{
+  font-style: normal;
+}
 button{
   border:none;
   outline: none;

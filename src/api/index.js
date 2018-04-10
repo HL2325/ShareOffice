@@ -26,12 +26,13 @@ Ax.interceptors.response.use(
   response => {
     if (response.data.resultcode === 403) {
       store.commit(types.LOGINOUT)
-      alert('请重新登录')
-      app.$router.push('/')
+      app.$dialog.alert({
+        title: '提示',
+        message: '您的账号在另一个设备上登录，请重新登录'
+      }).then(() => {
+        app.$router.push('/')
+      })
       return Promise.reject(new Error('请重新登录'))
-    }
-    if (response.data.resultcode === 503) {
-      alert(response.data.errordes)
     }
     if (response.data.resultcode === 500) {
       alert('服务器错误')
@@ -51,6 +52,11 @@ export function login (data) {
 // 首页 - 用户信息
 export function UserInfo () {
   return Ax.post(`Home/UserInfo`)
+}
+
+// 首页 - 获取场景
+export function GetScene () {
+  return Ax.post(`home/GetScene`)
 }
 
 // 侧边栏 - 修改密码

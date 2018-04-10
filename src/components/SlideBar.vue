@@ -19,7 +19,7 @@
           <i class="iconfont icon-yuechi"></i>
           修改密码
         </router-link>
-        <span>
+        <span @click="outLogin">
           <i class="iconfont icon-guanbi"></i>
           退出登录
         </span>
@@ -48,6 +48,9 @@
     methods: {
       sideHide () {
         this.$emit('hide')
+      },
+      outLogin () {
+        alert('退出登录')
       }
     }
   }
@@ -73,11 +76,12 @@
         width: 1.6rem;
         height: 1.6rem;
         border-radius: 50%;
-        margin: 1rem auto 0.6rem;
+        margin: 0.5rem auto 0.3rem;
         border: 1px solid #19d6fd;
         img{
           width: 100%;
           height: 100%;
+          border-radius: 50%;
         }
       }
       .SlideBarUser{
@@ -88,7 +92,7 @@
         width: 100%;
         font-size: 0.3rem;
         color: #f2f9ff;
-        margin-top: 0.6rem;
+        margin-top: 0.2rem;
         li{
           height: 1rem;
           line-height: 1rem;
